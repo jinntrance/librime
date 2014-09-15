@@ -36,13 +36,16 @@ class UserDb : public BaseDb {
   virtual bool Backup(const std::string& snapshot_file);
   virtual bool Restore(const std::string& snapshot_file);
 
-  bool IsUserDb();
-  std::string GetDbName();
-  std::string GetUserId();
-  std::string GetRimeVersion();
-
   static const std::string extension;
   static const std::string snapshot_extension;
+};
+
+class UserDbUtil {
+ public:
+  static bool IsUserDb(Db* db);
+  static std::string GetDbName(Db* db);
+  static std::string GetUserId(Db* db);
+  static std::string GetRimeVersion(Db* db);
 };
 
 class UserDbMerger : public Sink {

@@ -25,8 +25,9 @@ static void rime_dict_initialize() {
 
   r.Register("tabledb", new Component<TableDb>);
   r.Register("stabledb", new Component<StableDb>);
-  r.Register("plain_userdb", new Component<UserDb<TextDb>>);
-  r.Register("userdb", new Component<UserDb<TreeDb>>);
+  r.Register("plain_userdb", new UserDb<TextDb>::Component);
+  r.Register("legacy_userdb", new UserDb<TreeDb>::Component);
+  r.Register("userdb", new UserDb<TextDb>::Component);
 
   r.Register("dictionary", new DictionaryComponent);
   r.Register("reverse_lookup_dictionary",

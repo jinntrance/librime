@@ -14,6 +14,7 @@
 namespace rime {
 
 class Deployer;
+class UserDbComponent;
 
 using UserDictList = std::vector<std::string>;
 
@@ -38,6 +39,7 @@ class UserDictManager {
  protected:
   Deployer* deployer_;
   boost::filesystem::path path_;
+  UserDbComponent* user_db_component_;
 };
 
 }  // namespace rime

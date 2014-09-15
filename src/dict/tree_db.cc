@@ -18,6 +18,7 @@
 #include <rime/common.h>
 #include <rime/service.h>
 #include <rime/dict/tree_db.h>
+#include <rime/dict/user_db.h>
 
 namespace rime {
 
@@ -260,6 +261,19 @@ bool TreeDb::CommitTransaction() {
     return false;
   in_transaction_ = !db_->kcdb.end_transaction(true);
   return !in_transaction_;
+}
+
+template class UserDb<TreeDb>;
+
+template <>
+const std::string UserDb<TreeDb>::extension(".userdb.kct");
+
+template <>
+const std::string UserDb<TreeDb>::snapshot_extension(".userdb.kcss");
+
+template <>
+UserDb<TreeDb>::UserDb(const std::string& name)
+    : TreeDb(name + extension, "userdb") {
 }
 
 }  // namespace rime
